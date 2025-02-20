@@ -5,8 +5,20 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "baseUrl": "./",
     "paths": {
-        "@/*": ["./src/*"],
+      "@/*": ["src/*"]
     },
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
 }
