@@ -7,17 +7,19 @@ import Broadcast from '@/components/Broadcast'
 
 function App() {
   const [isShowBroadcase, setIsShowBroadcase] = useState<boolean>(true)
+  const [isBroadcaseWillBeUnmounted, setIsBroadcaseWillBeUnmounted] = useState<boolean>(false)
 
   return (
     <>
-      { isShowBroadcase
-        && <Broadcast
-              isShowBroadcase={isShowBroadcase}
-              setIsShowBroadcase={setIsShowBroadcase} 
-            />
-      }
       <div className={`w-[100%] overflow-hidden`}>
-        <div className={`transition-all duration-800 ${isShowBroadcase ? 'mt-[40px]' : 'mt-0'}`}>content</div>
+        { isShowBroadcase
+          && <Broadcast
+                setIsShowBroadcase={setIsShowBroadcase}
+                isBroadcaseWillBeUnmounted={isBroadcaseWillBeUnmounted}
+                setIsBroadcaseWillBeUnmounted={setIsBroadcaseWillBeUnmounted}
+              />
+        }
+        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[40px]'}`}>content</div>
       </div>
       {/* <div>
         <a href="https://vite.dev" target="_blank">

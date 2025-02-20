@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./index.module.scss";
 
-interface Broadcase {
-    isShowBroadcase: boolean,
-    setIsShowBroadcase: (value: boolean) => void
+interface BroadcaseComponent {
+    setIsShowBroadcase: (value: boolean) => void,
+    isBroadcaseWillBeUnmounted: boolean,
+    setIsBroadcaseWillBeUnmounted: (value: boolean) => void
 }
 
-export default function Broadcase({ isShowBroadcase, setIsShowBroadcase }: Broadcase) {
+export default function Broadcase({ setIsShowBroadcase, isBroadcaseWillBeUnmounted, setIsBroadcaseWillBeUnmounted }: BroadcaseComponent) {
     const [content, setContent] = useState<string[]>([])
+    const broadcaseDOM = useRef<HTMLDivElement | null>(null)
     // const [isMounted, setIsMounted] = useState<Boolean>(false)
 
     useEffect(() => {
@@ -19,10 +21,24 @@ export default function Broadcase({ isShowBroadcase, setIsShowBroadcase }: Broad
             "FREE SHIPPING AND RETURNS"
         ]
         setContent(mockdata)
-    }, [isShowBroadcase])
+    }, [])
+
+    const handleClick = () => {
+        broadcaseDOM?.current?.classList.add('top-[-40px]')
+        setIsBroadcaseWillBeUnmounted(true)
+        setTimeout(() => {
+            setIsShowBroadcase(false)
+        }, 2000)
+    }
+            
 
     return (
-        <div className={`flex items-center w-[100%] bg-[#000000] absolute top-0 left-0`}>
+        <div className={`
+                flex items-center w-[100%] bg-[#000000] absolute left-0 transition-all duration-800
+                ${isBroadcaseWillBeUnmounted ? 'top-[-40px]' : 'top-0'}
+            `}
+            ref={broadcaseDOM}
+        >
             <div className={`flex items-center justify-center flex-1 ${styles.marqee}`}>
                 <ul>
                     {content.map((msg, index) => {
@@ -30,8 +46,7 @@ export default function Broadcase({ isShowBroadcase, setIsShowBroadcase }: Broad
                     })}
                 </ul>
             </div>
-            <div
-                className={`
+            <div className={`
                     flex
                     items-center
                     justify-center
@@ -43,7 +58,7 @@ export default function Broadcase({ isShowBroadcase, setIsShowBroadcase }: Broad
                     text-md
                     cursor-pointer
                 `}
-                onClick={() => setIsShowBroadcase(false)}
+                onClick={() => handleClick()}
             >
                 X
             </div>
