@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { X } from "lucide-react";
 import styles from "./index.module.scss";
 
 interface BroadcaseComponent {
@@ -47,20 +48,12 @@ export default function Broadcase({ setIsShowBroadcase, isBroadcaseWillBeUnmount
                 </ul>
             </div>
             <div className={`
-                    flex
-                    items-center
-                    justify-center
-                    p-2
-                    ml-2
-                    flex-none
-                    font-bold
-                    text-white
-                    text-md
-                    cursor-pointer
+                    flex items-center justify-center p-2 flex-none
+                    font-bold text-white text-md cursor-pointer
                 `}
                 onClick={() => handleClick()}
             >
-                X
+                <X size={24}/>
             </div>
         </div>
     )

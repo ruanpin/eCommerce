@@ -1,9 +1,7 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
-// import Button from "@/components/ui/button";
 import Broadcast from '@/components/Broadcast'
+import Header from '@/components/Header'
 
 function App() {
   const [isShowBroadcase, setIsShowBroadcase] = useState<boolean>(true)
@@ -19,7 +17,10 @@ function App() {
                 setIsBroadcaseWillBeUnmounted={setIsBroadcaseWillBeUnmounted}
               />
         }
-        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[40px]'}`}>content</div>
+        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[40px]'}`}>
+          <Header />
+          <div>content</div>
+        </div>
       </div>
       {/* <div>
         <a href="https://vite.dev" target="_blank">
