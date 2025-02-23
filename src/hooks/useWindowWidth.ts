@@ -9,11 +9,11 @@ export default function useWindowWidth() {
     }, 50), [])
 
     useEffect(() => {
-        console.log('Component mounted, setting up resize listener')
+        // console.log('Component mounted, setting up resize listener')
         window.addEventListener("resize", handleResize)
 
         return () => {
-            console.log('Component unmounted, cleaning up resize listener')
+            // console.log('Component unmounted, cleaning up resize listener')
             window.removeEventListener("resize", handleResize)
         }
     }, [handleResize])

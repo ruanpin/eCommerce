@@ -1,7 +1,10 @@
-// import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { AlignJustify, Search, User, Heart, ShoppingBag } from 'lucide-react';
 import useWindowWidth from '@/hooks/useWindowWidth'
+import logo from '@/assets/women-logo.svg'
+
 import styles from './index.module.scss'
-import logo from '../../assets/women-logo.svg'
+import NotifyNumber from './components/NotifyNumber/index.tsx'
 
 const tabs: Array<string> = [
     "WOMEN",
@@ -12,20 +15,33 @@ const tabs: Array<string> = [
 
 export default function Header() {
     const windowWidth = useWindowWidth()
+    console.log(windowWidth)
     return (
         <>
-            <div className={`flex items-center justify-between`}>
+            <div className={`flex items-center justify-between ${styles.upperHeader}`}>
                 <div className={`flex items-center flex-1`}>
-                    {
-                        tabs.map((tab, index) => <div className={`${styles.tab}`} key={index}>{ tab }</div>)
-                    }
+                    <div className={`flex items-center justify-center`}>
+                        <AlignJustify className={`cursor-pointer`} size={28}/>
+                    </div>
                 </div>
-                <div className={`${windowWidth > 768 ? 'w-[136px]' : 'w-[110px]'}`}>
-                    <img src={logo}/>{windowWidth}
+                <div className={`flex justify-center items-center ${styles.logoWidth}`}>
+                    <img src={logo}/>
                 </div>
                 <div className={`flex items-center flex-1 flex-row-reverse`}>
-                    <div>1</div>
-                    <div>33</div>
+                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
+                        <ShoppingBag className={`cursor-pointer ${styles.icon}`} size={21}/>
+                        <NotifyNumber amount={3}/>
+                    </div>
+                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
+                        <Heart className={`cursor-pointer ${styles.icon}`} size={21}/>
+                        <NotifyNumber amount={2}/>
+                    </div>
+                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
+                        <User className={`cursor-pointer ${styles.icon}`} size={21}/>
+                    </div>
+                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
+                       <Search className={`cursor-pointer ${styles.icon}`} size={21}/>
+                    </div>
                 </div>
             </div>
             <Panel />
@@ -34,7 +50,31 @@ export default function Header() {
 }
 
 function Panel() {
+    const [activeTab, setActiveTab] = useState<string>("WOMEN")
+
+    const handleClick = (tab: string) => {
+        setActiveTab(tab)
+    }
     return (
-        <div>panel</div>
+        <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center`}>
+            <div className={`flex items-center  text-[12px] font-extrabold tracking-tighter`}>
+                {
+                    tabs.map((tab, index) => {
+                        return (
+                            <div className={`py-[8px] relative overflow-hidden ${styles.tab}`} key={index}>
+                                <div className={`
+                                        cursor-pointer py-[13px] px-[11px] ${activeTab ===  tab && styles.tabActiveBG}
+                                    `}
+                                    onClick={() => handleClick(tab)}
+                                >
+                                    { tab }
+                                </div>
+                                <div className={`${styles.tabLine} ${activeTab ===  tab && styles.tabActiveLine}`}></div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </div>
     )
 }

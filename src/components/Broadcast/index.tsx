@@ -36,7 +36,7 @@ export default function Broadcase({ setIsShowBroadcase, isBroadcaseWillBeUnmount
     return (
         <div className={`
                 flex items-center w-[100%] bg-[#000000] absolute left-0 transition-all duration-800
-                ${isBroadcaseWillBeUnmounted ? 'top-[-40px]' : 'top-0'}
+                ${isBroadcaseWillBeUnmounted ? 'top-[-42px]' : 'top-0'}
             `}
             ref={broadcaseDOM}
         >

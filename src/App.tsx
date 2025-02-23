@@ -17,7 +17,7 @@ function App() {
                 setIsBroadcaseWillBeUnmounted={setIsBroadcaseWillBeUnmounted}
               />
         }
-        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[40px]'}`}>
+        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[42px]'}`}>
           <Header />
           <div>content</div>
         </div>
