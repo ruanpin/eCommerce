@@ -1,21 +1,25 @@
-import { useState } from "react";
 import { AlignJustify, Search, User, Heart, ShoppingBag } from 'lucide-react';
-import useWindowWidth from '@/hooks/useWindowWidth'
+// import useWindowWidth from '@/hooks/useWindowWidth'
 import logo from '@/assets/women-logo.svg'
+import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from './index.module.scss'
 import NotifyNumber from './components/NotifyNumber/index.tsx'
-
-const tabs: Array<string> = [
-    "WOMEN",
-    "MEN",
-    "KIDS",
-    "FIND A STORE"
+interface Tab {
+    label: string,
+    navigate: string
+}
+const tabs: Array<Tab> = [
+    {label: "WOMEN", navigate: "/"},
+    {label: "MEN", navigate: "/men"},
+    {label: "KIDS", navigate: "/kids"},
+    {label: "FIND A STORE", navigate: "/findAStore"},
 ]
 
 export default function Header() {
-    const windowWidth = useWindowWidth()
-    console.log(windowWidth)
+    // const windowWidth = useWindowWidth()
+    // console.log(windowWidth)
+    
     return (
         <>
             <div className={`flex items-center justify-between ${styles.upperHeader}`}>
@@ -50,26 +54,27 @@ export default function Header() {
 }
 
 function Panel() {
-    const [activeTab, setActiveTab] = useState<string>("WOMEN")
+    const navigate = useNavigate();
+    const location = useLocation()
 
-    const handleClick = (tab: string) => {
-        setActiveTab(tab)
+    const handleClick = (tab: Tab) => {
+        navigate(tab.navigate)
     }
     return (
         <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center`}>
-            <div className={`flex items-center  text-[12px] font-extrabold tracking-tighter`}>
+            <div className={`flex items-center text-[12px] font-extrabold tracking-tighter`}>
                 {
                     tabs.map((tab, index) => {
                         return (
-                            <div className={`py-[8px] relative overflow-hidden ${styles.tab}`} key={index}>
+                            <div className={`py-[7px] relative overflow-hidden ${styles.tab}`} key={index}>
                                 <div className={`
-                                        cursor-pointer py-[13px] px-[11px] ${activeTab ===  tab && styles.tabActiveBG}
+                                        cursor-pointer py-[13px] px-[11px] ${location.pathname ===  tab.navigate && styles.tabActiveBG}
                                     `}
                                     onClick={() => handleClick(tab)}
                                 >
-                                    { tab }
+                                    { tab.label }
                                 </div>
-                                <div className={`${styles.tabLine} ${activeTab ===  tab && styles.tabActiveLine}`}></div>
+                                <div className={`${styles.tabLine} ${location.pathname ===  tab.navigate && styles.tabActiveLine}`}></div>
                             </div>
                         )
                     })
