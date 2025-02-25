@@ -1,9 +1,11 @@
 import Header from '@/components/Header'
+import FeatureBalls from './components/FeatureBalls'
+
 export default function Women() {
     return (
         <>
             <Header />
-            <div>content</div>
+            <FeatureBalls />
             <div>women</div>
         </>
     )
