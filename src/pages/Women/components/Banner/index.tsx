@@ -83,7 +83,7 @@ export default function Banner() {
                 </CarouselContent>
                 <div className="mt-4 flex justify-center space-x-2 absolute bottom-0 left-0 right-0 -translate-y-10">
                     {
-                        bannerList.map((item, index) => {
+                        bannerList.map((_, index) => {
                             return (
                                 <div className={`
                                         w-[22px] h-[22px] p-md bg-gray-300 cursor-pointer rounded-[999px] flex justify-center items-center
