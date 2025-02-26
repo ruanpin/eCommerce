@@ -19,7 +19,7 @@ function App() {
                 setIsBroadcaseWillBeUnmounted={setIsBroadcaseWillBeUnmounted}
               />
         }
-        <div className={`transition-all duration-800 ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[42px]'}`}>
+        <div className={`transition-all duration-800 overflow-hidden ${isBroadcaseWillBeUnmounted ? 'mt-0' : 'mt-[42px]'}`}>
           <RouterProvider router={router}></RouterProvider>
         </div>
       </div>
