@@ -1,0 +1,8 @@
+.button {
+    @media (max-width: 764px) {
+        height: 40px;
+    }
+    @media (min-width: 765px) {
+        height: 50px
+    }
+}

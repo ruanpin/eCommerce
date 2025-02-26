@@ -1,0 +1,21 @@
+.title {
+    @media (max-width: 764px) {
+        font-size: 34px
+    }
+    @media (min-width: 765px) {
+        font-size: 80px
+    }
+}
+
+.intro {
+    @media (max-width: 765px) {
+        display: none;
+    }
+}
+
+.img {
+    @media (max-width: 765px) {
+        transform: translateX(-5%);
+        object-fit: cover;
+    }
+}

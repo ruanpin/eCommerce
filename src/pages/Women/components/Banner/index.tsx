@@ -1,4 +1,4 @@
-// import styles from "./index.module.scss";
+import styles from "./index.module.scss";
 import { useState, useEffect } from 'react'
 import Autoplay from "embla-carousel-autoplay"
 import Button from '@/components/Button'
@@ -59,19 +59,21 @@ export default function Banner() {
             >
                 <CarouselContent className={`w-full max-w-full`}>
                     {
-                        bannerList.map((item) => {
+                        bannerList.map((item, index) => {
                             return (
-                                <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full `}>
+                                <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full `} key={index}>
                                     <div className={`flex items-center relative`}>
-                                        <div className={`flex flex-col absolute pl-[50px]`}>
-                                            <div className={`tracking-[.07em] text-[80px] font-normal mb-[10px]`}>{item.title}</div>
-                                            <div className={`text-[20px] tracking-[.04em] mb-[48px] font-medium`}>{item.intro}</div>
+                                        <div className={`flex flex-col absolute pl-[50px] z-20`}>
+                                            <div className={`tracking-[.07em] font-normal mb-[10px] ${styles.title}`}>{item.title}</div>
+                                            <div className={`text-[20px] tracking-[.04em] mb-[48px] font-medium ${styles.intro}`}>{item.intro}</div>
                                             <div className={`mb-[40px]`}>
                                                 <Button text={item.buttonName}></Button>
                                             </div>
                                         </div>
                                         <div className={`flex items-center justify-center`}>
-                                            <img src={item.imgSrc} object-none/>
+                                            {/* <AspectRatio ratio={1 / 1}> */}
+                                                <img src={item.imgSrc} className={`object-cover h-[450px]`}/>
+                                            {/* </AspectRatio> */}
                                         </div>
                                     </div>
                                 </CarouselItem>
@@ -88,6 +90,7 @@ export default function Banner() {
                                         ${(index + 1) === current ? ' bg-gray-300' : 'bg-transparent'}
                                     `}
                                     onClick={() => api?.scrollTo(index)}
+                                    key={index}
                                 >
                                     <div className="h-[6px] w-[6px] rounded-full bg-black dark:bg-gray-600"/>
                                 </div>
