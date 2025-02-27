@@ -71,17 +71,17 @@ export default function Banner() {
                                             <div className={`
                                                     tracking-[.07em] font-normal mb-[15px] md:mb-[10px] ${styles.title}
                                                     transition-all duration-1000 delay-300 transform
-                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'translate-y-[250px] opacity-0'}
+                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'sm:translate-y-[250px] md:translate-y-[250px] lg:translate-y-[250px] opacity-0'}
                                                 `}
                                             >{item.title}</div>
                                             <div className={`
                                                     text-[20px] tracking-[.04em] mb-[48px] font-medium ${styles.intro}
                                                     transition-all duration-1000 delay-350 transform
-                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'translate-y-[250px] opacity-0'}
+                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'sm:translate-y-[250px] md:translate-y-[250px] lg:translate-y-[250px] opacity-0'}
                                                 `}>{item.intro}</div>
                                             <div className={`
                                                     mb-[40px] transition-all duration-1000 delay-500 transform
-                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'translate-y-[250px] opacity-0'}
+                                                    ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'sm:translate-y-[250px] md:translate-y-[250px] lg:translate-y-[250px] opacity-0'}
                                                 `}>
                                                 <Button text={item.buttonName}></Button>
                                             </div>
