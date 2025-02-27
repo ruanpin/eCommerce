@@ -65,6 +65,13 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+img {
+  user-select: none;   /* 禁止選擇圖片 */
+  -webkit-user-drag: none;  /* 禁止拖動圖片（適用於 Safari） */
+  pointer-events: none;  /* 禁止圖片點擊事件 */
+  touch-action: none; /* 禁止觸摸操作 */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

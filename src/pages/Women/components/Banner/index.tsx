@@ -77,7 +77,7 @@ export default function Banner() {
                                         <div className={`flex items-center`}>
                                             <picture>
                                                 <source srcSet={item.imgSrc_mb} media="(max-width: 765px)" />
-                                                <img src={item.imgSrc} className={`object-cover h-[450px]`} />
+                                                <img onContextMenu={(e) => e.preventDefault()} src={item.imgSrc} className={`object-cover h-[450px]`} />
                                             </picture>
                                         </div>
                                     </div>
