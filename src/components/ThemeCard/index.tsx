@@ -9,7 +9,7 @@ export interface CardList {
 
 export default function ThemeCard({ imgSrc, buttonName }: CardList) {
     return (
-        <Card className={`border-0 shadow-none bg-[#F5F5F5] p-0 cursor-pointer ${styles.Card}`}>
+        <Card className={`border-0 shadow-none bg-[#EEECED] p-0 cursor-pointer ${styles.Card}`}>
             <CardContent className={`flex aspect-square items-end justify-center p-0`}>
                 <div className={`flex items-center rounded-[12px] overflow-hidden`}>
                     <img className={`
