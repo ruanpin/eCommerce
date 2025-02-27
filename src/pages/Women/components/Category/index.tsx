@@ -1,5 +1,4 @@
 // import styles from './index.module.scss'
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -7,6 +6,22 @@ import {
 //   CarouselNext,
 //   CarouselPrevious,
 } from "@/components/ui/carousel"
+import ThemeCard, { CardList } from '@/components/ThemeCard'
+
+import themeCard1 from '@/assets/ThemeCard/collection-42.jpg'
+import themeCard2 from '@/assets/ThemeCard/collection-43.jpg'
+import themeCard3 from '@/assets/ThemeCard/collection-44.jpg'
+import themeCard4 from '@/assets/ThemeCard/collection-45.jpg'
+import themeCard5 from '@/assets/ThemeCard/collection-46.jpg'
+
+const cardList: Array<CardList> = [
+    { imgSrc: themeCard1, buttonName: "Tops" },
+    { imgSrc: themeCard2, buttonName: "Sweatshirts" },
+    { imgSrc: themeCard3, buttonName: "Swim" },
+    { imgSrc: themeCard4, buttonName: "Dresses" },
+    { imgSrc: themeCard5, buttonName: "Cardigans" },
+]
+
 
 export default function Category() {
     return (
@@ -22,19 +37,17 @@ export default function Category() {
 function SlideCard() {
     return (
         <div className={`flex justify-center`}>
-            <Carousel className="w-full">
+            <Carousel className="w-full max-w-[1440px]">
                 <CarouselContent className="-ml-1">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                    <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                        <Card>
-                            <CardContent className="flex aspect-square items-center justify-center p-6">
-                            <span className="text-2xl font-semibold">{index + 1}</span>
-                            </CardContent>
-                        </Card>
-                        </div>
-                    </CarouselItem>
-                    ))}
+                    {
+                        cardList.map((item, index) => (
+                            <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                                <div className="p-1">
+                                    <ThemeCard imgSrc={item.imgSrc} buttonName={item.buttonName}/>
+                                </div>
+                            </CarouselItem>
+                        ))
+                    }
                 </CarouselContent>
                 {/* <CarouselPrevious />
                 <CarouselNext /> */}

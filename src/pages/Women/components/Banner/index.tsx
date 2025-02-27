@@ -51,7 +51,7 @@ export default function Banner() {
         })
     }, [api])
     return (
-        <div className={`relative w-full`}>
+        <div className={`relative w-full bg-[#F7F7F7]`}>
             <Carousel
                 plugins={[
                     Autoplay({
@@ -66,7 +66,7 @@ export default function Banner() {
                         bannerList.map((item, index) => {
                             return (
                                 <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full flex justify-center items-center`} key={index}>
-                                    <div className={`flex items-center flex-row-reverse relative w-full`}>
+                                    <div className={`flex items-center flex-row-reverse relative w-full max-w-[1440px]`}>
                                         <div className={`flex flex-col absolute left-0 pl-[30px] md:pl-[50px] z-20`}>
                                             <div className={`
                                                     tracking-[.07em] font-normal mb-[15px] md:mb-[10px] ${styles.title}
