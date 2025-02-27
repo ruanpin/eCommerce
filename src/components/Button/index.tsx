@@ -3,7 +3,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function Button({ text }: {text: string}) {
     return (
-        <div className={`flex`}>
+        <div className={`flex relative ${styles.glowOnHover}`}>
             <div className={`
                     bg-black text-white pl-[30px] pr-[25px] rounded-[999px] flex justify-center
                     items-center cursor-pointer

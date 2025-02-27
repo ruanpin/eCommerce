@@ -80,7 +80,7 @@ export default function Banner() {
                                                     ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'xs:translate-y-[200px] translate-y-[200px] opacity-0'}
                                                 `}>{item.intro}</div>
                                             <div className={`
-                                                    mb-[40px] transition-all duration-1000 delay-500 transform
+                                                    mb-[40px] transition-all duration-1000 delay-500 transform flex
                                                     ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'xs:translate-y-[200px] translate-y-[200px] opacity-0'}
                                                 `}>
                                                 <Button text={item.buttonName}></Button>
