@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div className={`w-[100%] overflow-hidden`}>
+      <div className={`overflow-hidden`}>
         { isShowBroadcase
           && <Broadcast
                 setIsShowBroadcase={setIsShowBroadcase}

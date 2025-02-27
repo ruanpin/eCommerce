@@ -21,7 +21,9 @@
 
   background-color: white !important;
   color: black !important;
-  overflow-x: hidden;
+  box-sizing: border-box;
+  /* overflow-x: hidden;
+  scrollbar-gutter: stable; */
 }
 
 a {
@@ -37,7 +39,7 @@ body {
   margin: 0;
   /* display: flex;
   place-items: center; */
-  min-width: 100vw;
+  /* min-width: 100%; */
   min-height: 100vh;
 }
 
