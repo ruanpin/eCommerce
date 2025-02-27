@@ -67,10 +67,22 @@ export default function Banner() {
                             return (
                                 <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full flex justify-center items-center`} key={index}>
                                     <div className={`flex items-center flex-row-reverse relative w-full`}>
-                                        <div className={`flex flex-col absolute left-0 pl-[15px] md:pl-[50px] z-20`}>
-                                            <div className={`tracking-[.07em] font-normal mb-[15px] md:mb-[10px] ${styles.title}`}>{item.title}</div>
-                                            <div className={`text-[20px] tracking-[.04em] mb-[48px] font-medium ${styles.intro}`}>{item.intro}</div>
-                                            <div className={`mb-[40px]`}>
+                                        <div className={`flex flex-col absolute left-0 pl-[30px] md:pl-[50px] z-20`}>
+                                            <div className={`
+                                                    tracking-[.07em] font-normal mb-[15px] md:mb-[10px] ${styles.title}
+                                                    transition-all duration-1000 delay-300 transform
+                                                    ${(index + 1) === current ? 'translate-y-0 opacity-100' : 'translate-y-50 opacity-0'}
+                                                `}
+                                            >{item.title}</div>
+                                            <div className={`
+                                                    text-[20px] tracking-[.04em] mb-[48px] font-medium ${styles.intro}
+                                                    transition-all duration-1000 delay-350 transform
+                                                    ${(index + 1) === current ? 'translate-y-0 opacity-100' : 'translate-y-50 opacity-0'}
+                                                `}>{item.intro}</div>
+                                            <div className={`
+                                                    mb-[40px] transition-all duration-1000 delay-500 transform
+                                                    ${(index + 1) === current ? 'translate-y-0 opacity-100' : 'translate-y-50 opacity-0'}
+                                                `}>
                                                 <Button text={item.buttonName}></Button>
                                             </div>
                                         </div>
