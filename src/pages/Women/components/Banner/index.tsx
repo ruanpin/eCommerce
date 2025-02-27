@@ -13,19 +13,23 @@ import {
 import Banner1 from '@/assets/Banner/women-slideshow-1.jpg'
 import Banner2 from '@/assets/Banner/women-slideshow-2.jpg'
 import Banner3 from '@/assets/Banner/women-slideshow-3.jpg'
+import Banner1_mb from '@/assets/Banner/women-slideshow-1_mb.jpg'
+import Banner2_mb from '@/assets/Banner/women-slideshow-2_mb.jpg'
+import Banner3_mb from '@/assets/Banner/women-slideshow-3_mb.jpg'
 // import Banner3 from '../../../../assets/Banner/women-slideshow-3.jpg'
 
 interface BannerListObject {
     imgSrc: string,
+    imgSrc_mb: string,
     title: string,
     intro: string,
     buttonName: string,
 }
 
 const bannerList: Array<BannerListObject> = [
-    { imgSrc: Banner1, title: "Elegance", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
-    { imgSrc: Banner2, title: "Boutique", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
-    { imgSrc: Banner3, title: "Elegance", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
+    { imgSrc: Banner1, imgSrc_mb: Banner1_mb, title: "Elegance", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
+    { imgSrc: Banner2, imgSrc_mb: Banner2_mb, title: "Boutique", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
+    { imgSrc: Banner3, imgSrc_mb: Banner3_mb, title: "Elegance", intro: "From casual to formal, we've got you covered", buttonName: "Shop collection" },
 ]
 
 export default function Banner() {
@@ -47,7 +51,7 @@ export default function Banner() {
         })
     }, [api])
     return (
-        <div className={`relative w-full max-w-full overflow-hidden`}>
+        <div className={`relative w-full`}>
             <Carousel
                 plugins={[
                     Autoplay({
@@ -55,25 +59,26 @@ export default function Banner() {
                     }),
                 ]} 
                 setApi={setApi} 
-                className={`w-full max-w-full`}
+                className={`w-full`}
             >
-                <CarouselContent className={`w-full max-w-full`}>
+                <CarouselContent className={``}>
                     {
                         bannerList.map((item, index) => {
                             return (
-                                <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full `} key={index}>
-                                    <div className={`flex items-center relative`}>
-                                        <div className={`flex flex-col absolute pl-[50px] z-20`}>
-                                            <div className={`tracking-[.07em] font-normal mb-[10px] ${styles.title}`}>{item.title}</div>
+                                <CarouselItem className={`bg-[#F7F7F7] h-[450px] w-full flex justify-center items-center`} key={index}>
+                                    <div className={`flex items-center flex-row-reverse relative w-full`}>
+                                        <div className={`flex flex-col absolute left-0 pl-[15px] md:pl-[50px] z-20`}>
+                                            <div className={`tracking-[.07em] font-normal mb-[15px] md:mb-[10px] ${styles.title}`}>{item.title}</div>
                                             <div className={`text-[20px] tracking-[.04em] mb-[48px] font-medium ${styles.intro}`}>{item.intro}</div>
                                             <div className={`mb-[40px]`}>
                                                 <Button text={item.buttonName}></Button>
                                             </div>
                                         </div>
-                                        <div className={`flex items-center justify-center`}>
-                                            {/* <AspectRatio ratio={1 / 1}> */}
-                                                <img src={item.imgSrc} className={`object-cover h-[450px]`}/>
-                                            {/* </AspectRatio> */}
+                                        <div className={`flex items-center`}>
+                                            <picture>
+                                                <source srcSet={item.imgSrc_mb} media="(max-width: 765px)" />
+                                                <img src={item.imgSrc} className={`object-cover h-[450px]`} />
+                                            </picture>
                                         </div>
                                     </div>
                                 </CarouselItem>

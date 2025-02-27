@@ -12,10 +12,3 @@
         display: none;
     }
 }
-
-.img {
-    @media (max-width: 765px) {
-        transform: translateX(-5%);
-        object-fit: cover;
-    }
-}
