@@ -10,7 +10,6 @@ export default function Women() {
             <FeatureBalls />
             <Banner/>
             <Category />
-            <div>women</div>
         </>
     )
 }

@@ -83,7 +83,14 @@ export default function Banner() {
                                                     mb-[40px] transition-all duration-1000 delay-500 transform flex
                                                     ${(index + 1) === current ? 'translate-y-[0px] opacity-100' : 'xs:translate-y-[200px] translate-y-[200px] opacity-0'}
                                                 `}>
-                                                <Button text={item.buttonName}></Button>
+                                                <Button
+                                                    bg_textColor_className={`bg-black text-white`}
+                                                    text={item.buttonName}
+                                                    textSize_className={`text-[18px]`}
+                                                    btnSize_className={`h-[40px] md:h-[50px]`}
+                                                    iconSize={18}
+                                                    icon={`ChevronRight`}
+                                                ></Button>
                                             </div>
                                         </div>
                                         <div className={`flex items-center`}>

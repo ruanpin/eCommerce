@@ -2,18 +2,18 @@ import { ArrowUpRight } from 'lucide-react';
 import styles from './index.module.scss'
 import { Card, CardContent } from "@/components/ui/card"
 
-export interface CardList {
+export interface ThemeCardList {
     imgSrc: string,
     buttonName: string,
 }
 
-export default function ThemeCard({ imgSrc, buttonName }: CardList) {
+export default function ThemeCard({ imgSrc, buttonName }: ThemeCardList) {
     return (
         <Card className={`border-0 shadow-none bg-[#EEECED] p-0 cursor-pointer ${styles.Card}`}>
             <CardContent className={`flex aspect-square items-end justify-center p-0`}>
-                <div className={`flex items-center rounded-[12px] overflow-hidden h-[100%] `}>
+                <div className={`flex items-center rounded-[12px] overflow-hidden h-[100%] w-[100%]`}>
                     <img className={`
-                            object-cover rounded-[12px] h-[100%] ${styles.img}
+                            object-cover rounded-[12px] h-[100%] w-[100%] ${styles.img}
                         `}
                         onContextMenu={(e) => e.preventDefault()}
                         src={imgSrc} 
