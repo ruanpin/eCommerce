@@ -37,11 +37,11 @@ export default function Category() {
 function SlideCard() {
     return (
         <div className={`flex justify-center`}>
-            <Carousel className="w-full max-w-[1440px]">
+            <Carousel className="w-full max-w-[1440px] rounded-[12px]">
                 <CarouselContent className="-ml-1">
                     {
                         cardList.map((item, index) => (
-                            <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <CarouselItem key={index} className="pl-0 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                                 <div className="p-1">
                                     <ThemeCard imgSrc={item.imgSrc} buttonName={item.buttonName}/>
                                 </div>
