@@ -11,9 +11,9 @@ export default function ThemeCard({ imgSrc, buttonName }: CardList) {
     return (
         <Card className={`border-0 shadow-none bg-[#EEECED] p-0 cursor-pointer ${styles.Card}`}>
             <CardContent className={`flex aspect-square items-end justify-center p-0`}>
-                <div className={`flex items-center rounded-[12px] overflow-hidden`}>
+                <div className={`flex items-center rounded-[12px] overflow-hidden h-[100%] `}>
                     <img className={`
-                            object-cover rounded-[12px] ${styles.img}
+                            object-cover rounded-[12px] h-[100%] ${styles.img}
                         `}
                         onContextMenu={(e) => e.preventDefault()}
                         src={imgSrc} 
