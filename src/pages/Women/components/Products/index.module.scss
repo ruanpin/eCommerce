@@ -1,0 +1,6 @@
+.img {
+    transition: 0.4s all ease-in-out;
+}
+.Card:hover .img {
+    transform: scale(1.05);
+}

@@ -44,7 +44,7 @@ export default function Category() {
     return (
         <div className={`px-[15px] md:px-[30px] lg:px-[50px] mt-[38px] md:mt-[64px] lg:mt-[76px]`}>
             <div className={`mb-[30px] md:mb-[50px] lg:mb-[60px] flex justify-center `}>
-                <div className={`text-[22px] md:text-[32px] lg:text-[42px]`}>Categories you might like</div>
+                <div className={`text-[22px] md:text-[32px] lg:text-[42px] tracking-wider`}>Categories you might like</div>
             </div>
             <ScrollSection_ThemeCard />
             <ScrollSection_BrickCard />
