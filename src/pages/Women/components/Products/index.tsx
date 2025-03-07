@@ -1,5 +1,5 @@
-import styles from './index.module.scss'
-import { Card, CardContent } from "@/components/ui/card"
+// import styles from './index.module.scss'
+// import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
     CarouselContent,
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import ThemeCard, { ThemeCardList } from '@/components/ThemeCard'
-import Button from '@/components/Button'
+// import Button from '@/components/Button'
 
 import themeCard1 from '@/assets/ThemeCard/collection-42.jpg'
 import themeCard2 from '@/assets/ThemeCard/collection-43.jpg'
@@ -17,8 +17,8 @@ import themeCard3 from '@/assets/ThemeCard/collection-44.jpg'
 import themeCard4 from '@/assets/ThemeCard/collection-45.jpg'
 import themeCard5 from '@/assets/ThemeCard/collection-46.jpg'
 
-import brickCard1 from '@/assets/BrickCard/collection-47.jpg'
-import brickCard2 from '@/assets/BrickCard/collection-48.jpg'
+// import brickCard1 from '@/assets/BrickCard/collection-47.jpg'
+// import brickCard2 from '@/assets/BrickCard/collection-48.jpg'
 
 const themeCardList: Array<ThemeCardList> = [
     { imgSrc: themeCard1, buttonName: "Tops" },
@@ -28,16 +28,16 @@ const themeCardList: Array<ThemeCardList> = [
     { imgSrc: themeCard5, buttonName: "Cardigans" },
 ]
 
-interface BrickCardList {
-    imgSrc: string,
-    title: string,
-    buttonName: string,
-}
+// interface BrickCardList {
+//     imgSrc: string,
+//     title: string,
+//     buttonName: string,
+// }
 
-const brickCardList: Array<BrickCardList> = [
-    { imgSrc: brickCard1, title: "The January Collection", buttonName: "Shop now" },
-    { imgSrc: brickCard2, title: "Olympia's picks", buttonName: "Shop now" },
-]
+// const brickCardList: Array<BrickCardList> = [
+//     { imgSrc: brickCard1, title: "The January Collection", buttonName: "Shop now" },
+//     { imgSrc: brickCard2, title: "Olympia's picks", buttonName: "Shop now" },
+// ]
 
 
 export default function Category() {

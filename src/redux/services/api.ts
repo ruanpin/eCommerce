@@ -18,7 +18,7 @@ export const api = createApi({
         body: credentials,
         formData: true, // 使用 form-data 格式
       }),
-      async onQueryStarted(credentials, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
           dispatch(setUserInfo(data)); // 登入成功後存入 Redux
