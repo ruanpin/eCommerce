@@ -58,7 +58,8 @@ function Panel() {
     const location = useLocation()
 
     const handleClick = (tab: Tab) => {
-        navigate(tab.navigate)
+        // navigate(tab.navigate)
+        console.log(tab, navigate)
     }
     return (
         <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center`}>
