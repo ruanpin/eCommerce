@@ -38,7 +38,6 @@ export default function Register() {
     }
 
     const [register] = useRegisterMutation();
-
     const handleRegister = async () => {
         if (!isAgree) return toast.warning("Please agree to the terms of use.")
         const unfilledFieldsArr = getUnfilledFields(userRegister)
@@ -154,7 +153,12 @@ export default function Register() {
                             </div>
                         </div>
                         <div>
-                            <button className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition flex justify-center" type="submit" onClick={handleRegister} disabled={buttonLoading}>
+                            <button
+                                className="w-full text-white py-3 rounded-lg hover:bg-indigo-700 transition flex justify-center"
+                                type="submit"
+                                onClick={handleRegister}
+                                disabled={buttonLoading}
+                            >
                                 {
                                     buttonLoading ? <Loader2 className="animate-spin text-white" /> : 'Register'
                                 }

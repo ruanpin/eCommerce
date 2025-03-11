@@ -43,7 +43,7 @@ export default function Header() {
                         <NotifyNumber amount={2}/>
                     </div>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
-                        <User className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/login')} />
+                        <User className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/userInfo')} />
                     </div>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
                        <Search className={`cursor-pointer ${styles.icon}`} size={21}/>

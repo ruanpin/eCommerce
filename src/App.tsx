@@ -12,7 +12,7 @@ const Home = lazy(() => import('./pages/forestage/Home'));
 // const ProductDetail = lazy(() => import('./pages/forestage/ProductDetail'));
 // const Cart = lazy(() => import('./pages/forestage/Cart'));
 // const Order = lazy(() => import('./pages/forestage/Order'));
-// const UserProfile = lazy(() => import('./pages/forestage/UserProfile'));
+const UserInfo = lazy(() => import('./pages/forestage/UserInfo'));
 const Register = lazy(() => import('./pages/forestage/Register'));
 const Login = lazy(() => import('./pages/forestage/Login'));
 
@@ -39,8 +39,7 @@ function App() {
             {/* <Route path="products" element={<ProductList />} />
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />
-            <Route path="orders" element={<Order />} />
-            <Route path="profile" element={<UserProfile />} /> */}
+            <Route path="orders" element={<Order />} /> */}
 
             {/* 不需權限 */}
             <Route element={<PublicRoute />}>
@@ -49,7 +48,7 @@ function App() {
             </Route>
             {/* 需要登入權限 */}
             <Route element={<PrivateRoute />}>
-
+              <Route path="userInfo" element={<UserInfo />} />
             </Route>
           </Route>
           
