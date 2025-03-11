@@ -4,6 +4,7 @@ import { Suspense, lazy } from 'react';
 import Loading from '@/components/Loading'
 import FrontLayout from './layouts/FrontLayout';
 import AdminLayout from './layouts/AdminLayout';
+import { PrivateRoute, PublicRoute } from './router/routesSetting';
 
 // 前台頁面
 const Home = lazy(() => import('./pages/forestage/Home'));
@@ -40,8 +41,16 @@ function App() {
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Order />} />
             <Route path="profile" element={<UserProfile />} /> */}
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+
+            {/* 不需權限 */}
+            <Route element={<PublicRoute />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+            </Route>
+            {/* 需要登入權限 */}
+            <Route element={<PrivateRoute />}>
+
+            </Route>
           </Route>
           
           {/* 後台 */}
