@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom';
+import { Toaster } from "@/components/ui/sonner"
 import Broadcast from '@/components/Broadcast'
 import Header from '@/components/Header'
 
@@ -25,6 +26,7 @@ export default function FrontLayout() {
           <main className="flex-1">
             <Outlet />
           </main>
+          <Toaster />
           {/* <footer className="bg-gray-800 text-white text-center">Footer</footer> */}
         </div>
       </div>

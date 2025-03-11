@@ -1,22 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setUserInfo } from '../slices/authSlice';
+import { LoginResponse, UserRegister } from '../authInterfaces'
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'https://adered.com/api',
-    baseUrl: 'http://localhost:4990',
+    baseUrl: 'http://localhost:4999/api',
   }),
   endpoints: (builder) => ({
     login: builder.mutation<
-      { token: string; auth: string; useName: string }, // 回應資料型別
-      { account: string; password: string } // 傳遞參數型別
+      LoginResponse, // 回應資料型別
+      { email: string; password: string } // 傳遞參數型別
     >({
       query: (credentials) => ({
-        url: '/test_login',
+        url: '/auth/login',
         method: 'POST',
         body: credentials,
-        formData: true, // 使用 form-data 格式
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
@@ -27,7 +27,17 @@ export const api = createApi({
         }
       },
     }),
+    register: builder.mutation<
+      {message: string, status: number},
+      UserRegister
+    >({
+      query: (credentials) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body: credentials,
+      })
+    })
   }),
 });
 
-export const { useLoginMutation } = api;
+export const { useLoginMutation, useRegisterMutation } = api;
