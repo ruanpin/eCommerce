@@ -11,14 +11,16 @@ interface Tab {
 }
 const tabs: Array<Tab> = [
     {label: "WOMEN", navigate: "/"},
-    {label: "MEN", navigate: "/men"},
-    {label: "KIDS", navigate: "/kids"},
-    {label: "FIND A STORE", navigate: "/findAStore"},
+    {label: "MEN", navigate: "/MEN"},
+    {label: "KIDS", navigate: "/KIDS"},
+    // {label: "FIND A STORE", navigate: "/"},
 ]
+
 
 export default function Header() {
     // const windowWidth = useWindowWidth()
     // console.log(windowWidth)
+    const navigate = useNavigate();
     
     return (
         <>
@@ -41,7 +43,7 @@ export default function Header() {
                         <NotifyNumber amount={2}/>
                     </div>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
-                        <User className={`cursor-pointer ${styles.icon}`} size={21}/>
+                        <User className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/login')} />
                     </div>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
                        <Search className={`cursor-pointer ${styles.icon}`} size={21}/>

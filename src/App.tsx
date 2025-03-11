@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Loading from '@/components/Loading'
 import FrontLayout from './layouts/FrontLayout';
@@ -12,22 +12,24 @@ const Home = lazy(() => import('./pages/forestage/Home'));
 // const Cart = lazy(() => import('./pages/forestage/Cart'));
 // const Order = lazy(() => import('./pages/forestage/Order'));
 // const UserProfile = lazy(() => import('./pages/forestage/UserProfile'));
-// const Login = lazy(() => import('./pages/forestage/Login'));
-// const Register = lazy(() => import('./pages/forestage/Register'));
+const Register = lazy(() => import('./pages/forestage/Register'));
+const Login = lazy(() => import('./pages/forestage/Login'));
 
 // 管理員後台頁面
-// const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
-// const Users = lazy(() => import('./pages/admin/Users'));
-// const Products = lazy(() => import('./pages/admin/Products'));
-// const Orders = lazy(() => import('./pages/admin/Orders'));
-// const Coupons = lazy(() => import('./pages/admin/Coupons'));
-// const Reviews = lazy(() => import('./pages/admin/Reviews'));
-// const Rankings = lazy(() => import('./pages/admin/Rankings'));
-// const Banners = lazy(() => import('./pages/admin/Banners'));
+// const Dashboard = lazy(() => import('./pages/backstage/Dashboard'));
+// const Users = lazy(() => import('./pages/backstage/Users'));
+// const Products = lazy(() => import('./pages/backstage/Products'));
+// const Orders = lazy(() => import('./pages/backstage/Orders'));
+// const Coupons = lazy(() => import('./pages/backstage/Coupons'));
+// const Reviews = lazy(() => import('./pages/backstage/Reviews'));
+// const Rankings = lazy(() => import('./pages/backstage/Rankings'));
+// const Banners = lazy(() => import('./pages/backstage/Banners'));
+
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
           {/* 前台 */}
@@ -37,9 +39,9 @@ function App() {
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Order />} />
-            <Route path="profile" element={<UserProfile />} />
+            <Route path="profile" element={<UserProfile />} /> */}
             <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} /> */}
+            <Route path="register" element={<Register />} />
           </Route>
           
           {/* 後台 */}
@@ -53,9 +55,11 @@ function App() {
             <Route path="rankings" element={<Rankings />} />
             <Route path="banners" element={<Banners />} /> */}
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </Router>
+    </BrowserRouter>
   );
 }
 

@@ -26,6 +26,10 @@
   scrollbar-gutter: stable; */
 }
 
+input[type="checkbox"] {
+  accent-color: black;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -59,9 +63,9 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+/* button:hover {
   border-color: #646cff;
-}
+} */
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -74,7 +78,7 @@ img {
   touch-action: none; /* 禁止觸摸操作 */
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -85,7 +89,7 @@ img {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
 
 @layer base {
   :root {
