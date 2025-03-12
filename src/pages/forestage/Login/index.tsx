@@ -88,6 +88,15 @@ export default function Login() {
           </div>
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
             <div>
+              <input
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-200"
+                type="email"
+                placeholder="Username or email address*"
+                name="email"
+                required
+              />
+            </div>
+            <div>
               <MyInput
                   className="p-3 border border-gray-300 rounded-lg h-[50px]"
                   type="email"
