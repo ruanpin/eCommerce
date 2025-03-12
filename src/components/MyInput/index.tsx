@@ -29,7 +29,7 @@ export function MyPasswordInput({ className, type, ...props }: InputProps) {
                 {...props}
             />
             <div
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 flex justify-center items-center cursor-pointer"
+                className="absolute right-4 h-[100%] flex justify-center items-center cursor-pointer"
                 onClick={togglePasswordVisibility}
             >
                 <div>
