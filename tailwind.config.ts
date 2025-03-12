@@ -1,9 +1,10 @@
 module.exports = {
-    theme: {
-      extend: {
-        screens: {
-          'xs': '350px',
-        },
+  darkMode: false,
+  theme: {
+    extend: {
+      screens: {
+        'xs': '350px',
       },
     },
-  }
+  },
+}
