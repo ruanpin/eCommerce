@@ -6,6 +6,8 @@ import { Loader2 } from 'lucide-react';
 import { getUnfilledFields } from '@/utils/objectCheck'
 import { useLoginMutation } from '@/redux/services/api'
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from '@/redux/store';
 
 export interface userLogin {
   email: string,
@@ -15,6 +17,7 @@ export interface userLogin {
 const remember_email = localStorage.getItem('login_email')
 
 export default function Login() {
+  const nextRoutePath = useSelector<RootState>(state => state.auth.nextRoutePath);
   const navigate = useNavigate();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false)
   const [userLogin, setUserLogin] = useState<userLogin>({
@@ -57,7 +60,7 @@ export default function Login() {
         email: "",
         password: "",
       }))
-      navigate('/')
+      navigate(nextRoutePath ?? '/')
     } catch (err) {
       console.error('login failed', err);
     } finally {

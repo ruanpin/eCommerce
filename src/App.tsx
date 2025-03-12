@@ -1,10 +1,12 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import Loading from '@/components/Loading'
 import FrontLayout from './layouts/FrontLayout';
 import AdminLayout from './layouts/AdminLayout';
 import { PrivateRoute, PublicRoute } from './router/routesSetting';
+import { useDispatch } from 'react-redux';
+import { setUserLoginStatus_fromLocalStorage } from '@/redux/slices/authSlice'
 
 // 前台頁面
 const Home = lazy(() => import('./pages/forestage/Home'));
@@ -29,6 +31,10 @@ const Login = lazy(() => import('./pages/forestage/Login'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
+  const dispatch =  useDispatch()
+  useEffect(() => {
+    dispatch(setUserLoginStatus_fromLocalStorage())
+  }, [dispatch])
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
