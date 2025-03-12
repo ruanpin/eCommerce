@@ -96,3 +96,9 @@ img {
     --radius: 0.5rem;
   }
 }
+
+@media (max-width: 765px) {
+  .border-solid {
+    --tw-border-style: solid;
+  }
+}

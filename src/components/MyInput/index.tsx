@@ -22,17 +22,19 @@ export function MyPasswordInput({ className, type, ...props }: InputProps) {
         setShowPassword((prev) => !prev);
     };
     return (
-        <div className="relative">
+        <div className="relative flex justify-between items-center">
             <Input
                 type={showPassword ? 'text' : type}
-                className={className}
+                className={className + ' pr-[40px]'}
                 {...props}
             />
             <div
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 flex justify-center items-center cursor-pointer"
                 onClick={togglePasswordVisibility}
             >
-                {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                <div>
+                    {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                </div>
             </div>
         </div>
 
