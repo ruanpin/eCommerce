@@ -89,7 +89,7 @@ export default function Login() {
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
             <div>
               <MyInput
-                  className="p-3 border border-gray-300 rounded-lg h-[50px] border-solid"
+                  className="p-3 border border-gray-300 rounded-lg h-[50px] border-solid focus:ring focus:ring-black"
                   type="email"
                   placeholder="email address*"
                   name="email"
@@ -101,7 +101,7 @@ export default function Login() {
             </div>
             <div className="relative">
               <MyPasswordInput
-                  className="p-3 border border-gray-300 rounded-lg h-[50px] border-solid"
+                  className="p-3 border border-gray-300 rounded-lg h-[50px] border-solid focus:ring focus:ring-black"
                   type="password"
                   placeholder="Password*"
                   name="password"
