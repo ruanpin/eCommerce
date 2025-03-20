@@ -15,3 +15,12 @@ export interface UserRegister {
   password: string,
   role: string
 }
+
+export interface UserDetails {
+  id: number,
+  email: string,
+  name: string,
+  phone: string | null,
+  address: string | null,
+  role: string
+}

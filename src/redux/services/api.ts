@@ -1,12 +1,25 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setUserInfo } from '../slices/authSlice';
-import { LoginResponse, UserRegister } from '../authInterfaces'
+import { LoginResponse, UserRegister, UserDetails } from '../authInterfaces'
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    // baseUrl: 'https://adered.com/api',
     baseUrl: 'http://localhost:4999/api',
+    prepareHeaders: (headers, { getState, endpoint }) => {
+      const state = getState() as { auth: { token: string | null } };
+      const token = state.auth.token;
+
+      if (endpoint === 'login' || endpoint === 'register') {
+        return headers;
+      }
+
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     login: builder.mutation<
@@ -36,8 +49,18 @@ export const api = createApi({
         method: 'POST',
         body: credentials,
       })
-    })
+    }),
+    getUserDetails: builder.query<
+      {message: string, data: UserDetails, status: number},
+      void
+    >({
+      query: () => '/auth/userInfo'
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = api;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useLazyGetUserDetailsQuery,
+} = api;

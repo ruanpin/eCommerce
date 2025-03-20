@@ -1,9 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/redux/slices/authSlice'
 import { User, ShoppingBag, LogOut } from 'lucide-react';
+import { RootState } from '@/redux/store';
 
 export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (value: string) => void}) {
   const dispatch = useDispatch();
+  const { name, email } = useSelector((state: RootState) => state.auth)
   const handleLogout = () => {
       dispatch(logout())
   }
@@ -23,8 +25,8 @@ export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (
             height={112}
           /> */}
         </div>
-        <h6 className="mt-4 text-lg font-semibold">Tony Nguyen</h6>
-        <p className="text-gray-500 text-sm">oa51360@gmail.com</p>
+        <h6 className="mt-4 text-lg font-semibold">{ name }</h6>
+        <p className="text-gray-500 text-sm">{ email }</p>
       </div>
       <ul className="mt-6 space-y-4 font-semibold">
         {

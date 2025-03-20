@@ -63,6 +63,8 @@ export default function Login() {
       navigate(nextRoutePath ?? '/')
     } catch (err) {
       console.error('login failed', err);
+      const error = err as { data: { message: string } }; 
+      toast.warning(`${JSON.stringify(error?.data?.message) || 'Login fail'}`)
     } finally {
       setButtonLoading(() => false)
     }
