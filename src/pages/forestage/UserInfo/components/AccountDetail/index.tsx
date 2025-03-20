@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import MyInput from '@/components/MyInput'
 import { useLazyGetUserDetailsQuery } from '@/redux/services/api'
-import { toast } from "sonner"
+// import { toast } from "sonner"
 
 export default function AccountDetails() {
   const [getUserDetails] = useLazyGetUserDetailsQuery();
@@ -23,7 +23,7 @@ export default function AccountDetails() {
       }))
     } catch(err) {
       console.error(err)
-      toast.warning(`${JSON.stringify(err)}`)
+      // toast.warning(`${JSON.stringify(err)}`)
     }
   }
   useEffect(() => {
