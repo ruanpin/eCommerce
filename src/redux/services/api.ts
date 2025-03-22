@@ -56,6 +56,16 @@ export const api = createApi({
     >({
       query: () => '/auth/userInfo'
     }),
+    updateUserDetails: builder.mutation<
+      {message: string, status: number},
+      {name: string, phone: string}
+    >({
+      query: (credentials) => ({
+        url: '/auth/userInfo',
+        method: 'PUT',
+        body: credentials,
+      })
+    }),
   }),
 });
 
@@ -63,4 +73,5 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useLazyGetUserDetailsQuery,
+  useUpdateUserDetailsMutation
 } = api;
