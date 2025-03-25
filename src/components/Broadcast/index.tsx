@@ -19,7 +19,9 @@ export default function Broadcase({ setIsShowBroadcase, isBroadcaseWillBeUnmount
             "LIMITED TIME OFFER: FASHION SALE YOU CAN'T RESIST",
             "NEW SEASON, NEW STYLES: FASHION SALE YOU CAN'T MISS",
             "LIMITED TIME OFFER: FASHION SALE YOU CAN'T RESIST",
-            "FREE SHIPPING AND RETURNS"
+            "FREE SHIPPING AND RETURNS",
+            "LIMITED TIME OFFER: FASHION SALE YOU CAN'T RESIST",
+            "NEW SEASON, NEW STYLES: FASHION SALE YOU CAN'T MISS",
         ]
         setContent(mockdata)
     }, [])

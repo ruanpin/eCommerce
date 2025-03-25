@@ -25,6 +25,7 @@
     .iconContainer {
         @media (max-width: 767px) {
             display: none;
+            display: flex;
         }
         @media (min-width: 768px) {
             display: flex;

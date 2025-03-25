@@ -1,4 +1,4 @@
-import { AlignJustify, Search, User, Heart, ShoppingBag } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 // import useWindowWidth from '@/hooks/useWindowWidth'
 import logo from '@/assets/women-logo.svg'
 import { useNavigate, useLocation } from "react-router-dom";
@@ -11,8 +11,8 @@ interface Tab {
 }
 const tabs: Array<Tab> = [
     {label: "WOMEN", navigate: "/"},
-    {label: "MEN", navigate: "/MEN"},
-    {label: "KIDS", navigate: "/KIDS"},
+    // {label: "MEN", navigate: "/MEN"},
+    // {label: "KIDS", navigate: "/KIDS"},
     // {label: "FIND A STORE", navigate: "/"},
 ]
 
@@ -27,7 +27,7 @@ export default function Header() {
             <div className={`flex items-center justify-between ${styles.upperHeader}`}>
                 <div className={`flex items-center flex-1`}>
                     <div className={`flex items-center justify-center`}>
-                        <AlignJustify className={`cursor-pointer`} size={28}/>
+                        {/* <AlignJustify className={`cursor-pointer`} size={28}/> */}
                     </div>
                 </div>
                 <div className={`flex justify-center items-center cursor-pointer ${styles.logoWidth}`} onClick={() => navigate('/')}>
@@ -35,13 +35,13 @@ export default function Header() {
                 </div>
                 <div className={`flex items-center flex-1 flex-row-reverse`}>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
-                        <ShoppingBag className={`cursor-pointer ${styles.icon}`} size={21}/>
-                        <NotifyNumber amount={3}/>
+                        {/* <ShoppingBag className={`cursor-pointer ${styles.icon}`} size={21}/> */}
+                        <NotifyNumber amount={0}/>
                     </div>
-                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
+                    {/* <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
                         <Heart className={`cursor-pointer ${styles.icon}`} size={21}/>
                         <NotifyNumber amount={2}/>
-                    </div>
+                    </div> */}
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
                         <User className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/userInfo')} />
                     </div>
@@ -60,8 +60,8 @@ function Panel() {
     const location = useLocation()
 
     const handleClick = (tab: Tab) => {
-        // navigate(tab.navigate)
-        console.log(tab, navigate)
+        navigate(tab.navigate)
+        // console.log(tab, navigate)
     }
     return (
         <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center border-solid`}>
