@@ -30,7 +30,7 @@ export default function Header() {
                         <AlignJustify className={`cursor-pointer`} size={28}/>
                     </div>
                 </div>
-                <div className={`flex justify-center items-center ${styles.logoWidth}`}>
+                <div className={`flex justify-center items-center cursor-pointer ${styles.logoWidth}`} onClick={() => navigate('/')}>
                     <img src={logo}/>
                 </div>
                 <div className={`flex items-center flex-1 flex-row-reverse`}>
@@ -46,7 +46,7 @@ export default function Header() {
                         <User className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/userInfo')} />
                     </div>
                     <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
-                       <Search className={`cursor-pointer ${styles.icon}`} size={21}/>
+                       <Search className={`cursor-pointer ${styles.icon}`} size={21} onClick={() => navigate('/search')}/>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ function Panel() {
         console.log(tab, navigate)
     }
     return (
-        <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center`}>
+        <div className={`border-t-1 border-b-1 border-gray-200 flex items-center justify-center border-solid`}>
             <div className={`flex items-center text-[12px] font-extrabold tracking-tighter`}>
                 {
                     tabs.map((tab, index) => {

@@ -102,3 +102,7 @@ img {
     --tw-border-style: solid;
   }
 }
+
+.border-gray-200 {
+  border-color: #E5E7EB;
+}

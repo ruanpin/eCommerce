@@ -83,6 +83,7 @@ export default function AccountDetails() {
                 required
                 value={details.name}
                 onChange={handleFormChange}
+                disabled
             />
             <MyInput
                 className="p-3 border border-gray-300 rounded-lg h-[50px] border-solid focus:ring focus:ring-black"

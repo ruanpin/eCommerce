@@ -16,6 +16,8 @@ const Home = lazy(() => import('./pages/forestage/Home'));
 const UserInfo = lazy(() => import('./pages/forestage/UserInfo'));
 const Register = lazy(() => import('./pages/forestage/Register'));
 const Login = lazy(() => import('./pages/forestage/Login'));
+const Search = lazy(() => import('./pages/forestage/Search'));
+const ProductDetail = lazy(() => import('./pages/forestage/ProductDetail'));
 
 // 管理員後台頁面
 // const Dashboard = lazy(() => import('./pages/backstage/Dashboard'));
@@ -41,17 +43,18 @@ function App() {
           {/* 前台 */}
           <Route path="/" element={<FrontLayout />}>
             <Route index element={<Home />} />
+            <Route path="search" element={<Search />} />
+            <Route path="productDetail" element={<ProductDetail />} />
             {/* <Route path="products" element={<ProductList />} />
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Order />} /> */}
-
-            {/* 不需權限 */}
+            {/* 僅無權限時（無登入時） */}
             <Route element={<PublicRoute />}>
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
             </Route>
-            {/* 需要登入權限 */}
+            {/* 僅有權限時（登入時） */}
             <Route element={<PrivateRoute />}>
               <Route path="userInfo" element={<UserInfo />} />
             </Route>

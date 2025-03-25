@@ -40,7 +40,7 @@ const authSlice = createSlice({
       state.email = email ?? null;
     },
     setUserInfo: (state, action: PayloadAction<LoginResponse>) => {
-      console.log(action.payload, 'setUserInfo')
+      // console.log(action.payload, 'setUserInfo')
       state.isAuthenticated = true;
       state.token = action.payload.token ?? null;
       state.name = action.payload.user?.name ?? null;
