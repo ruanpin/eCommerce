@@ -9,7 +9,7 @@ export default function ProductDetail() {
         <section className="flat-spacing">
             <div className="tf-main-product section-image-zoom">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
                         {/* Product default */}
                         <div className="col-span-1 ">
                             <div className="w-full flex justify-center">
