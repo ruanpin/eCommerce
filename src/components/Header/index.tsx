@@ -1,4 +1,4 @@
-import { Search, User } from 'lucide-react';
+import { Search, User, ShoppingBag } from 'lucide-react';
 // import useWindowWidth from '@/hooks/useWindowWidth'
 import logo from '@/assets/women-logo.svg'
 import { useNavigate, useLocation } from "react-router-dom";
@@ -34,8 +34,8 @@ export default function Header() {
                     <img src={logo}/>
                 </div>
                 <div className={`flex items-center flex-1 flex-row-reverse`}>
-                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>
-                        {/* <ShoppingBag className={`cursor-pointer ${styles.icon}`} size={21}/> */}
+                    <div className={`flex items-center justify-center relative ${styles.iconContainer}`} onClick={() => navigate('/shoppingCart')}>
+                        <ShoppingBag className={`cursor-pointer ${styles.icon}`} size={21}/>
                         <NotifyNumber amount={0}/>
                     </div>
                     {/* <div className={`flex items-center justify-center relative ${styles.iconContainer}`}>

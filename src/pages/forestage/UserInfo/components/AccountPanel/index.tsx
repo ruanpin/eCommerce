@@ -15,7 +15,7 @@ export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (
     { value: "Orders", label: "Your Orders", icon: ShoppingBag },
   ]
   return (
-    <div className="w-full max-w-xs min-w-[302px] flex-col flex bg-gray-100 rounded-lg p-6 m-4 h-[425px]">
+    <div className="w-full max-w-xs min-w-[302px] flex-col flex bg-[#F7F7F7] rounded-lg p-6 m-4 h-[425px]">
       <div className="flex flex-col items-center text-center">
         <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-gray-300 bg-gray-300">
           {/* <Image
