@@ -19,7 +19,6 @@ const Login = lazy(() => import('./pages/forestage/Login'));
 const Search = lazy(() => import('./pages/forestage/Search'));
 const ProductDetail = lazy(() => import('./pages/forestage/ProductDetail'));
 const ShoppingCart = lazy(() => import('./pages/forestage/ShoppingCart'));
-const OrderManagement = lazy(() => import('./pages/forestage/OrderManagement'));
 
 // 管理員後台頁面
 // const Dashboard = lazy(() => import('./pages/backstage/Dashboard'));
@@ -47,7 +46,6 @@ function App() {
             <Route index element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="productDetail" element={<ProductDetail />} />
-            <Route path="dev" element={<OrderManagement />} />
             {/* <Route path="products" element={<ProductList />} />
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />

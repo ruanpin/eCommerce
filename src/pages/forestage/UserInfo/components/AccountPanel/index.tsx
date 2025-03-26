@@ -9,10 +9,13 @@ export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (
   const handleLogout = () => {
       dispatch(logout())
   }
+  const handleSwitchTab = (value: string) => {
+    setTab(value)
+  }
   console.log(setTab)
   const menu = [
     { value: "Details", label: "Account Details", icon: User },
-    { value: "Orders", label: "Your Orders", icon: ShoppingBag },
+    { value: "OrderManagement", label: "Your Orders", icon: ShoppingBag },
   ]
   return (
     <div className="w-full max-w-xs min-w-[302px] flex-col flex bg-[#F7F7F7] rounded-lg p-6 m-4 h-[425px]">
@@ -34,7 +37,7 @@ export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (
             const Component = icon
             // onClick={() => setTab(value)}
             return (
-              <li key={value} >
+              <li key={value} onClick={() => handleSwitchTab(value)}>
                 <div
                   className={`
                     flex items-center px-4 py-3 rounded-lg transition-all hover:bg-white cursor-pointer whitespace-nowrap

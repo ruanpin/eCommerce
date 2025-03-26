@@ -23,8 +23,8 @@ function Cart() {
 function CartProductCard() {
     return (
         <div className="flex justify-center items-center md:flex-row flex-col gap-8 p-[1.5em] w-full">
-            <div className="w-[150px] h-[150px] bg-gray-200">
-                img
+            <div className="w-[150px] h-[150px] bg-gray-200 rounded overflow-hidden">
+                <img src="https://picsum.photos/600/800" alt="Product" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col items-center w-full">
                 <div className="font-semibold mb-6 w-full text-[1.3em]">

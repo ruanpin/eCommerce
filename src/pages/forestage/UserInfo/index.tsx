@@ -2,11 +2,11 @@ import AccountSidebar from './components/AccountPanel'
 import { useState, Suspense } from 'react'
 import Loading from '@/components/Loading'
 import Detail from './components/AccountDetail'
-import Order from './components/OrderRecord'
+import OrderManagement from './components/OrderManagement'
 
 const componentMap = {
     Details: Detail,
-    Orders: Order
+    OrderManagement: OrderManagement
 }
 
 export default function UserInfo() {
