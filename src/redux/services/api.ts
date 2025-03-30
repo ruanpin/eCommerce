@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { deepParseJson } from 'deep-parse-json';
 import { setUserInfo } from '../slices/authSlice';
 import { LoginResponse, UserRegister, UserDetails } from '../authInterfaces'
+import { Product } from '../goodsInterfaces'
 
 export const api = createApi({
   reducerPath: 'api',
@@ -66,6 +68,26 @@ export const api = createApi({
         body: credentials,
       })
     }),
+    searchGoodsList: builder.query<
+      { message: string, data: Product[], status: number, total:  number },
+      { page: number; pageSize: number; keyword: string }
+    >({
+      query: ({ keyword, page, pageSize }) => `/products/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`,
+      transformResponse: (response: any) => {
+        try {
+          const parsedData = deepParseJson(response);
+          parsedData.data.forEach((e: Product) => {
+            if (e.variants.length) {
+              e.showPrice = e.variants[0].price
+            }
+          })
+          return parsedData;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          return response;
+        }
+      },
+    }),
   }),
 });
 
@@ -73,5 +95,6 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useLazyGetUserDetailsQuery,
-  useUpdateUserDetailsMutation
+  useUpdateUserDetailsMutation,
+  useLazySearchGoodsListQuery,
 } = api;

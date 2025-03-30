@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.0.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "deep-parse-json": "^2.0.0",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.475.0",

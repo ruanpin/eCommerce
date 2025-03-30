@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Input } from "@/components/ui/input"
+import Loading from '@/components/Loading'
 import { Eye, EyeOff, Search } from "lucide-react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -41,22 +42,41 @@ export function MyPasswordInput({ className, type, ...props }: InputProps) {
     )
 }
 
-export function MySearchInput({ className, onSearchHandler,  ...props }: InputProps & { onSearchHandler: () => void }) {
+export function MySearchInput({ className, onSearchHandler, isFetching,  ...props }: InputProps & { isFetching: boolean; onSearchHandler: () => void }) {
     return (
         <div className="relative flex justify-between items-center">
             <Input
                 className={className + ' pr-[40px]'}
+                onKeyDown={
+                    (e) => {
+                        if (e.key === "Enter" && !isFetching) {
+                            onSearchHandler();
+                        }
+                    }
+                }
                 {...props}
             />
-            <div
-                className="absolute right-4 h-[100%] flex justify-center items-center cursor-pointer"
-                onClick={onSearchHandler}
-            >
-                <div>
-                    <Search size={20} />
-                </div>
-            </div>
+            {
+                isFetching ? (
+                    <div
+                        className="absolute right-4 h-[100%] flex justify-center items-center cursor-not-allowed"
+                    >
+                        <div>
+                            <Loading color="text-black" size="w-5 h-5" />
+                        </div>
+                    </div>
+                ) : (
+                    <div
+                        className="absolute right-4 h-[100%] flex justify-center items-center cursor-pointer"
+                        onClick={onSearchHandler}
+                    >
+                        <div>
+                            <Search size={20} />
+                        </div>
+                    </div>
+                )
+            }
+            
         </div>
-
     )
 }

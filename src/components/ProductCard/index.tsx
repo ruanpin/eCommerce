@@ -1,36 +1,42 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import MyImg from '@/components/MyImg' 
+import { Product } from '@/redux/goodsInterfaces'
 
-export default function ProductCard() {
+export default function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate()
   return (
-    <div className="flex justify-center items-center cursor-pointer " onClick={() => navigate('/productDetail')}>
+    <div className="flex justify-center items-center cursor-pointer w-[300px] h-[450px]" onClick={() => navigate('/productDetail')}>
       <div className="flex flex-col">
-        <div className="bg-gray-400 rounded min-h-[300px] aspect-[3/4]">
-
+        <div className="flex justify-center items-center w-[300px] overflow-hidden">
+          <div className="rounded w-[300px] h-[350px] overflow-hidden relative">
+            <MyImg imgSrc={product.imgs?.[0]}/>
+          </div>
         </div>
-        <div className="font-semibold">Double-button trench coat</div>
+        <div className="font-semibold">{product.name}</div>
         <div className="space-x-2">
-          <span className="line-through">$298.00</span>
-          <span className="font-semibold">$219.99</span>
+          {/* <span className="line-through">$298.00</span> */}
+          <span className="font-semibold">{product.showPrice}</span>
         </div>
-        <ColorPicker/>
+        <ColorPicker colors={product.variants.map(e => e.color_code)}/>
       </div>
     </div>
   )
 }
-function ColorPicker() {
+function ColorPicker({ colors }: { colors: string[] }) {
   return (
     <div className="flex items-center space-x-2">
-      <Color colorCode="#F56565"/>
-      <Color colorCode="#CEA050"/>
-      <Color colorCode="#5F8DF3"/>
+      {
+        colors.map((color_code, index) => {
+          return <Color colorCode={color_code} key={index}/>
+        })
+      }
     </div>
   )
 }
 function Color({ colorCode }: { colorCode: string }) {
   const style = useMemo(() => ({ backgroundColor: colorCode }), [colorCode])
   return (
-    <div className="rounded-[999px] w-[24px] h-[24px]" style={style}></div>
+    <div className="rounded-[999px] w-[24px] h-[24px] border border-gray-400" style={style}></div>
   )
 }

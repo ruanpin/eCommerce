@@ -3,7 +3,7 @@ import QuantitySelector from '@/components/QuantitySelector'
 import { CircleX } from 'lucide-react';
 export default function ShoppingCart() {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1440px] mx-auto">
             <Cart />
             <OrderCheckout />
         </div>
