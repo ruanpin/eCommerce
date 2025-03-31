@@ -1,3 +1,8 @@
+export interface ColorSet {
+  color: string;
+  color_code: string
+}
+
 export interface Variant {
     color: string;
     color_code: string;
@@ -6,7 +11,7 @@ export interface Variant {
     stock: number;
   }
   
-  export interface Product {
+export interface Product {
     id: number;
     name: string;
     description: string;
@@ -16,5 +21,6 @@ export interface Variant {
     created_at: string;
     updated_at: string;
     variants: Variant[];
-    showPrice?: number
+    showPrice?: number,
+    category_name?: string,
   }

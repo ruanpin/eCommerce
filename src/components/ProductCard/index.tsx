@@ -5,8 +5,14 @@ import { Product } from '@/redux/goodsInterfaces'
 
 export default function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate()
+  const availableColors = useMemo(() => {
+    const result = [...new Set(product.variants.map(v => (
+        v.color_code
+    )))]
+    return result
+  }, [product]);
   return (
-    <div className="flex justify-center items-center cursor-pointer w-[300px] h-[450px]" onClick={() => navigate('/productDetail')}>
+    <div className="flex justify-center items-center cursor-pointer w-[300px] h-[450px]" onClick={() => navigate(`/productDetail/${product.id}`)}>
       <div className="flex flex-col">
         <div className="flex justify-center items-center w-[300px] overflow-hidden">
           <div className="rounded w-[300px] h-[350px] overflow-hidden relative">
@@ -18,7 +24,8 @@ export default function ProductCard({ product }: { product: Product }) {
           {/* <span className="line-through">$298.00</span> */}
           <span className="font-semibold">{product.showPrice}</span>
         </div>
-        <ColorPicker colors={product.variants.map(e => e.color_code)}/>
+        {/* <ColorPicker colors={product.variants.map(e => e.color_code)}/> */}
+        <ColorPicker colors={availableColors}/>
       </div>
     </div>
   )

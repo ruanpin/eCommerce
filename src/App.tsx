@@ -45,7 +45,7 @@ function App() {
           <Route path="/" element={<FrontLayout />}>
             <Route index element={<Home />} />
             <Route path="search" element={<Search />} />
-            <Route path="productDetail" element={<ProductDetail />} />
+            <Route path="productDetail/:product_id" element={<ProductDetail />} />
             {/* <Route path="products" element={<ProductList />} />
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />

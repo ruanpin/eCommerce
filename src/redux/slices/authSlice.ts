@@ -76,6 +76,8 @@ const authSlice = createSlice({
           // console.log(payload, 'payloadpayload')
           if (payload.status == 400) {
             toast.warning(`${JSON.stringify(payload.data)}`);
+          } else if (payload.status == 401) {
+            toast.warning('Please log in to continue.');
           } else if (payload.status == 403) {
             // console.log(payload.status == 403, 'payloadpayload')
             toast.warning(`Invalid token, please log in again.`);

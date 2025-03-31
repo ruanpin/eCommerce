@@ -88,6 +88,35 @@ export const api = createApi({
         }
       },
     }),
+    searchSpecificGood: builder.query<
+      { message: string, data: Product, status: number },
+      { product_id: string | undefined }
+    >({
+      query: ({ product_id }) => `/products/${product_id}`,
+      transformResponse: (response: any) => {
+        try {
+          const parsedData = deepParseJson(response);
+          if (Array.isArray(parsedData?.data?.variants) && parsedData?.data?.variants?.length) {
+            parsedData.data.showPrice = parsedData.data.variants[0].price
+          }
+          return parsedData;
+
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          return response;
+        }
+      },
+    }),
+    addToCart: builder.mutation<
+      { message: string, status: number, cartItemId?: number},
+      { productId: number, quantity: number, color: string, size: string }
+    >({
+      query: (credentials) => ({
+        url: '/cart/add',
+        method: 'POST',
+        body: credentials,
+      })
+    }),
   }),
 });
 
@@ -97,4 +126,6 @@ export const {
   useLazyGetUserDetailsQuery,
   useUpdateUserDetailsMutation,
   useLazySearchGoodsListQuery,
+  useSearchSpecificGoodQuery,
+  useAddToCartMutation,
 } = api;
