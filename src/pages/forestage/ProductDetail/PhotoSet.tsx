@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
     Carousel,
     CarouselContent,
@@ -6,6 +6,7 @@ import {
     // CarouselNext,
     // CarouselPrevious,
 } from "@/components/ui/carousel"
+import MyImg from '@/components/MyImg' 
 
 interface Imgs {
     imgs: string[] | undefined,
@@ -13,9 +14,6 @@ interface Imgs {
 
 export default function PhotoSet({ imgs }: Imgs) {
     const[imgIndex, setImgIndex] = useState(0)
-    useEffect(() => {
-        console.log(imgIndex)
-    }, [imgIndex])
     return (
         <div className="flex flex-col">
             <MainPhoto imgs={imgs} imgIndex={imgIndex}/>
@@ -26,8 +24,12 @@ export default function PhotoSet({ imgs }: Imgs) {
 
 function MainPhoto({ imgs, imgIndex }: Imgs & { imgIndex: number }) {
     return (
-        <div className="w-full aspect-[3/4] bg-gray-300 max-w-[600px]">
-            <img src={`${imgs?.[imgIndex]}`} alt="Product" className="w-full h-full object-cover" />
+        <div className="w-full aspect-[3/4] bg-gray-300 max-w-[600px] w-[100%] md:w-[350px] lg:w-[500px] h-[500px] md:h-[466px] lg:h-[666px] relative">
+            {/* <img src={`${imgs?.[imgIndex]}`} alt="Product" className="w-full h-full object-cover" /> */}
+            {/* <div>
+                
+            </div> */}
+            <MyImg imgSrc={imgs?.[imgIndex] as string}/>
         </div>
     )
 }

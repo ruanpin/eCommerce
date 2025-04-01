@@ -141,7 +141,7 @@ export default function ProductDetail() {
                                             <Star size={15}/>
                                             (134 reviews)
                                         </div> */}
-                                        <div className="text-[28px] font-semibold mb-2">{ data?.data?.showPrice }</div>
+                                        <div className="text-[28px] font-semibold mb-2">$ { data?.data?.showPrice }</div>
                                         <div>
                                             { data?.data?.description }
                                         </div>

@@ -22,7 +22,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="font-semibold">{product.name}</div>
         <div className="space-x-2">
           {/* <span className="line-through">$298.00</span> */}
-          <span className="font-semibold">{product.showPrice}</span>
+          <span className="font-semibold">$ {product.showPrice}</span>
         </div>
         {/* <ColorPicker colors={product.variants.map(e => e.color_code)}/> */}
         <ColorPicker colors={availableColors}/>
