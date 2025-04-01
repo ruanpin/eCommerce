@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import QuantitySelector from '@/components/QuantitySelector'
+// import QuantitySelector from '@/components/QuantitySelector'
 import { CircleX } from 'lucide-react';
 export default function ShoppingCart() {
     return (
@@ -39,7 +39,11 @@ function CartProductCard() {
                 <div className="flex justify-between items-center w-full">
                     <div className="font-semibold">Quantity:</div>
                     <div>
-                        <QuantitySelector />
+                        {/* <QuantitySelector
+                            quantity={usersChoice.quantity}
+                            Stock={targetStock}
+                            setQuantity={handleQuantityChange}
+                        /> */}
                     </div>
                 </div>
                 <Separator className="my-5"/>
