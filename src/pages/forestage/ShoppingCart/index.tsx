@@ -10,7 +10,8 @@ import MyLoading from '@/components/MyLoading';
 import {
     useLazySearchCart_MemberQuery,
     useChangeItemFromCart_memberMutation,
-    useDeleteProductFromCart_memberMutation
+    useDeleteProductFromCart_memberMutation,
+    useSubmitOrder_memberMutation
 } from '@/redux/services/api'
 
 export default function ShoppingCart() {
@@ -67,7 +68,11 @@ export default function ShoppingCart() {
                 toggleCheckboxAll={toggleCheckboxAll}
             />
             <div>
-                <OrderCheckout />
+                <OrderCheckout
+                    cartList={cartList}
+                    checkedItems={checkedItems}
+                    fetchData={fetchData}
+                />
             </div>
         </div>
     )
@@ -86,24 +91,32 @@ function Cart({
     handleCheckedChange: ({ id, stopper }: { id: number, stopper: boolean }) => void;
     toggleCheckboxAll: () => void
 }) {
-    
     return (
         <div className="mx-[1.5em] flex flex-col gap-8 lg:col-span-2 py-[1.3em]">
-            <div className="flex">
-                <label className="inline-flex items-center space-x-2 cursor-pointer">
-                    <input
-                        type="checkbox"
-                        className={`
-                            form-checkbox h-6 w-6 text-black border-balck rounded focus:ring-balck cursor-pointer 
-                        `}
-                        checked={checkedItems.size === cartList.filter(e => e.price).length}
-                        onChange={() => { 
-                            toggleCheckboxAll()
-                        }}
-                    />
-                    <div>Select All</div>
-                </label>
-            </div>
+            {
+                cartList.length ? (
+                    <div className="flex">
+                        <label className="inline-flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                className={`
+                                    form-checkbox h-6 w-6 text-black border-balck rounded focus:ring-balck cursor-pointer 
+                                `}
+                                checked={checkedItems.size === cartList.filter(e => e.price).length}
+                                onChange={() => { 
+                                    toggleCheckboxAll()
+                                }}
+                            />
+                            <div>Select All</div>
+                        </label>
+                    </div>
+                ) : (
+                    <div className='text-center my-[3em] font-semibold text-[1.5em]'>
+                        There are no items in the shopping cart
+                    </div>
+                )
+            }
+            
             {
                 cartList.map(e => (
                     <div className='flex items-center' key={e.id}>
@@ -271,40 +284,86 @@ function CartProductCard({ product, fetchData }: { product: CartItem, fetchData:
     )
 }
 
-function OrderCheckout() {
+function OrderCheckout({
+    cartList,
+    checkedItems,
+    fetchData
+}: {
+    cartList: CartItem[];
+    checkedItems: Set<number>;
+    fetchData: () => void
+}) {
+    const [isArgeeToConditions, setIsArgeeToConditions] = useState(false)
+    const [submitOrder, { isLoading }] = useSubmitOrder_memberMutation()
+    const total = useMemo(() => {
+        return cartList.reduce((total, e) => {
+            if (checkedItems.has(e.id)) {
+                total = total + Number((e.quantity * (e.price as number)).toFixed(2))
+            }
+            return total
+        }, 0)
+    }, [cartList, checkedItems])
+    const handleCheckOut = async () => {
+        if (isLoading) return
+        if (!checkedItems.size) return toast.warning('There are no items in the shopping cart.')
+        if (!isArgeeToConditions) return toast.warning('Please agree to Terms and conditions.')
+        try {
+            const result = await submitOrder({
+                cart_item_ids: [...checkedItems]
+            }).unwrap()
+            toast.success(`${result.message}`)
+            if (result.status === 200) fetchData()
+        } catch (err) {
+            console.error(err)
+        }
+    }
     return (
         <div className="m-[1.5em] flex flex-col justify-center lg:col-span-1 min-w-[300px]">
             <div className="flex flex-col space-y-4 bg-[#F7F7F7] rounded-[18px] p-[1.3em] md:p-[2em] pt-[1.3em] font-semibold">
                 <div className="text-[1.8em] mb-[1.2em]">Order Summary</div>
                 <div className="flex justify-between items-center">
                     <div>Subtotal</div>
-                    <div>$89.99</div>
+                    <div>$ {total.toFixed(2)}</div>
                 </div>
-                <Separator className=""/>
+                {/* <Separator className=""/>
                 <div className="flex justify-between items-center">
                     <div>Discounts</div>
-                    <div>$20</div>
+                    <div>$0</div>
                 </div>
                 <Separator className=""/>
                 <div className="flex justify-between items-center">
                     <div>Shipping</div>
                     <div>$0</div>
-                </div>
+                </div> */}
                 <Separator className=""/>
                 <div className="flex justify-between items-center text-[1.5em]">
                     <div>Total</div>
-                    <div>$89.99</div>
+                    <div>$ {total.toFixed(2)}</div>
                 </div>
                 <div className="flex items-center space-x-2 mt-[1.8em]">
-                    <input type="checkbox"></input>
-                    <div>I argee with the <span className="underline">Terms and conditions</span></div>
+                    <label className="inline-flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            className={`
+                                form-checkbox h-4 w-4 text-black border-balck rounded focus:ring-balck cursor-pointer 
+                            `}
+                            checked={isArgeeToConditions}
+                            onChange={() => { 
+                                setIsArgeeToConditions(!isArgeeToConditions)
+                            }}
+                        />
+                        <div>I argee with the <span className="underline">Terms and conditions</span></div>
+                    </label>
                 </div>
                 <div className="">
                     <button
                         className="w-full bg-black text-white py-3 rounded-lg flex justify-center"
                         type="submit"
+                        onClick={handleCheckOut}
                     >
-                        Check out
+                        <MyLoading isFetching={isLoading} size="w-5 h-5">
+                            Check out
+                        </MyLoading>
                     </button>
                 </div>
             </div>

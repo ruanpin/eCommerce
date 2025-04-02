@@ -109,7 +109,7 @@ export const api = createApi({
     }),
     addToCart: builder.mutation<
       { message: string, status: number, cartItemId?: number},
-      { productId: number, quantity: number, color: string, size: string }
+      { productId: number, quantity: number, color: string, size: string, color_code: string }
     >({
       query: (credentials) => ({
         url: '/cart/add',
@@ -155,6 +155,16 @@ export const api = createApi({
         method: 'DELETE',
       }),
     }),
+    submitOrder_member: builder.mutation<
+      { message: string, status: number },
+      { cart_item_ids: number[] }
+    >({
+      query: (credentials) => ({
+        url: `/order/member`,
+        method: 'POST',
+        body: credentials,
+      }),
+    }),
   }),
 });
 
@@ -169,4 +179,5 @@ export const {
   useLazySearchCart_MemberQuery,
   useChangeItemFromCart_memberMutation,
   useDeleteProductFromCart_memberMutation,
+  useSubmitOrder_memberMutation
 } = api;

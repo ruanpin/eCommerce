@@ -89,7 +89,8 @@ export default function ProductDetail() {
                 productId: data?.data?.id as number,
                 color: usersChoice.color,
                 size: usersChoice.size,
-                quantity: usersChoice.quantity
+                quantity: usersChoice.quantity,
+                color_code: usersChoice.color_code
             }).unwrap();
             console.log(result, 'addToCart')
             toast.success(`${result.message}`)

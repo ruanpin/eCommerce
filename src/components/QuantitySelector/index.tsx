@@ -10,7 +10,7 @@ export default function QuantitySelector({
   quantity: number;
   Stock: number | undefined;
   setQuantity: (quantity: number) => void,
-  isFetching: boolean
+  isFetching?: boolean
 }) {
 
   const handleDecrement = () => {
