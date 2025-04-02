@@ -23,4 +23,14 @@ export interface Product {
     variants: Variant[];
     showPrice?: number,
     category_name?: string,
+    price?: number
   }
+
+export type CartItem = Omit<Product, 'id'> & {
+    id: number;
+    quantity: number;
+    color: string;
+    size: string;
+    product_id: number;
+    color_code: string;
+}

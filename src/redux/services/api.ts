@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { deepParseJson } from 'deep-parse-json';
 import { setUserInfo } from '../slices/authSlice';
 import { LoginResponse, UserRegister, UserDetails } from '../authInterfaces'
-import { Product } from '../goodsInterfaces'
+import { Product, CartItem } from '../goodsInterfaces'
 
 export const api = createApi({
   reducerPath: 'api',
@@ -117,6 +117,44 @@ export const api = createApi({
         body: credentials,
       })
     }),
+    searchCart_Member: builder.query<
+      { message: string, data: CartItem[], status: number, totalAmount: number },
+      { page?: number, pageSize?: number }
+    >({
+      query: ({ page, pageSize }) => `/cart/cart?${page && `page=${page}`}${page && `&pageSize=${pageSize}`}`,
+      transformResponse: (response: any) => {
+        try {
+          const parsedData = deepParseJson(response);
+          // if (Array.isArray(parsedData?.data?.variants) && parsedData?.data?.variants?.length) {
+          //   parsedData.data.showPrice = parsedData.data.variants[0].price
+          // }
+          return parsedData;
+
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          return response;
+        }
+      },
+    }),
+    changeQuantityFromCart_member: builder.mutation<
+      { message: string, status: number },
+      { id: number, quantity: number }
+    >({
+      query: (credentials) => ({
+        url: '/cart/update',
+        method: 'PUT',
+        body: credentials,
+      }),
+    }),
+    deleteProductFromCart_member: builder.mutation<
+      { message: string, status: number },
+      { cartItem_id: number }
+    >({
+      query: ({ cartItem_id }) => ({
+        url: `/cart/remove/${cartItem_id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -128,4 +166,7 @@ export const {
   useLazySearchGoodsListQuery,
   useSearchSpecificGoodQuery,
   useAddToCartMutation,
+  useLazySearchCart_MemberQuery,
+  useChangeQuantityFromCart_memberMutation,
+  useDeleteProductFromCart_memberMutation,
 } = api;

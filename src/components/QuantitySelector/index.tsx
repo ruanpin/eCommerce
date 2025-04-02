@@ -1,24 +1,29 @@
 import { Minus, Plus } from 'lucide-react';
+// import MyLoading from '@/components/MyLoading';
 
 export default function QuantitySelector({
   quantity,
   Stock,
-  setQuantity
+  setQuantity,
+  isFetching = false
 }: {
   quantity: number;
   Stock: number | undefined;
-  setQuantity: (quantity: number) => void
+  setQuantity: (quantity: number) => void,
+  isFetching: boolean
 }) {
 
   const handleDecrement = () => {
-    if (Stock === undefined) return
+    if (!Stock) return
+    if (isFetching) return
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
 
   const handleIncrement = () => {
-    if (Stock === undefined) return
+    if (!Stock) return
+    if (isFetching) return
     if (Number(Stock) <= quantity) return
     setQuantity(quantity + 1);
   };
@@ -34,7 +39,9 @@ export default function QuantitySelector({
                   ${!Stock ? 'cursor-not-allowed' : 'cursor-pointer hover:text-[#df292c]'}
                 `}
             >
+              {/* <MyLoading isFetching={isFetching} loadingColor="text-gray-700" size="w-5 h-5"> */}
                 <Minus />
+              {/* </MyLoading> */}
             </div>
             <span className="w-12 h-8 flex justify-center items-center">{ quantity }</span>
             <div
@@ -45,7 +52,9 @@ export default function QuantitySelector({
                   ${!Stock ? 'cursor-not-allowed' : 'cursor-pointer hover:text-[#df292c]'}
                 `}
             >
+              {/* <MyLoading isFetching={isFetching} loadingColor="text-gray-700" size="w-5 h-5"> */}
                 <Plus />
+              {/* </MyLoading> */}
             </div>
         </div>
     </div>

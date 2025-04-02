@@ -12,7 +12,6 @@ export default function AccountSidebar({ tab, setTab }: { tab: string, setTab: (
   const handleSwitchTab = (value: string) => {
     setTab(value)
   }
-  console.log(setTab)
   const menu = [
     { value: "Details", label: "Account Details", icon: User },
     { value: "OrderManagement", label: "Your Orders", icon: ShoppingBag },
