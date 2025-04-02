@@ -136,9 +136,9 @@ export const api = createApi({
         }
       },
     }),
-    changeQuantityFromCart_member: builder.mutation<
+    changeItemFromCart_member: builder.mutation<
       { message: string, status: number },
-      { id: number, quantity: number }
+      { id: number, quantity?: number, checked?: number }
     >({
       query: (credentials) => ({
         url: '/cart/update',
@@ -167,6 +167,6 @@ export const {
   useSearchSpecificGoodQuery,
   useAddToCartMutation,
   useLazySearchCart_MemberQuery,
-  useChangeQuantityFromCart_memberMutation,
+  useChangeItemFromCart_memberMutation,
   useDeleteProductFromCart_memberMutation,
 } = api;

@@ -33,4 +33,5 @@ export type CartItem = Omit<Product, 'id'> & {
     size: string;
     product_id: number;
     color_code: string;
+    checked: number
 }

@@ -9,7 +9,7 @@ import MyLoading from '@/components/MyLoading';
 
 import {
     useLazySearchCart_MemberQuery,
-    useChangeQuantityFromCart_memberMutation,
+    useChangeItemFromCart_memberMutation,
     useDeleteProductFromCart_memberMutation
 } from '@/redux/services/api'
 
@@ -24,6 +24,36 @@ export default function ShoppingCart() {
             console.error(err)
         }
     }
+    const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
+    const toggleCheckbox = (id: number) => {
+        setCheckedItems((prev) => {
+          const newSet = new Set(prev);
+          if (newSet.has(id)) {
+            newSet.delete(id)
+          } else {
+            newSet.add(id)
+          }
+          return newSet;
+        });
+    };
+    const toggleCheckboxAll = () => {
+        setCheckedItems((prev) => {
+            if (prev.size === cartList.filter(e => e.price).length) {
+                return new Set()
+            } else {
+                return cartList.reduce((newSet, element) => {
+                    if (element.price!== null) {
+                        newSet.add(element.id)
+                    }
+                    return newSet;
+                }, new Set<number>())
+            }
+        });
+    };
+    const handleCheckedChange = ({ id, stopper }: { id: number, stopper: boolean }) => {
+        if (stopper) return
+        toggleCheckbox(id)
+    }
     useEffect(() => {
         fetchData()
     }, [])
@@ -32,6 +62,9 @@ export default function ShoppingCart() {
             <Cart
                 cartList={cartList}
                 fetchData={fetchData}
+                checkedItems={checkedItems}
+                handleCheckedChange={handleCheckedChange}
+                toggleCheckboxAll={toggleCheckboxAll}
             />
             <div>
                 <OrderCheckout />
@@ -42,16 +75,56 @@ export default function ShoppingCart() {
 
 function Cart({
     cartList,
-    fetchData
+    fetchData,
+    checkedItems,
+    handleCheckedChange,
+    toggleCheckboxAll,
 }: {
-    cartList: CartItem[],
-    fetchData: () => void,
+    cartList: CartItem[];
+    fetchData: () => void;
+    checkedItems: Set<number>;
+    handleCheckedChange: ({ id, stopper }: { id: number, stopper: boolean }) => void;
+    toggleCheckboxAll: () => void
 }) {
+    
     return (
         <div className="mx-[1.5em] flex flex-col gap-8 lg:col-span-2 py-[1.3em]">
+            <div className="flex">
+                <label className="inline-flex items-center space-x-2 cursor-pointer">
+                    <input
+                        type="checkbox"
+                        className={`
+                            form-checkbox h-6 w-6 text-black border-balck rounded focus:ring-balck cursor-pointer 
+                        `}
+                        checked={checkedItems.size === cartList.filter(e => e.price).length}
+                        onChange={() => { 
+                            toggleCheckboxAll()
+                        }}
+                    />
+                    <div>Select All</div>
+                </label>
+            </div>
             {
                 cartList.map(e => (
-                    <CartProductCard product={e} key={e.id} fetchData={fetchData}/>
+                    <div className='flex items-center' key={e.id}>
+                        <label className="inline-flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                className={`
+                                    form-checkbox h-6 w-6 text-black border-balck rounded focus:ring-balck 
+                                    ${e.price === null ? 'opacity-35 cursor-not-allowed' : 'cursor-pointer'}
+                                `}
+                                checked={checkedItems.has(e.id)}
+                                onChange={() => { 
+                                    handleCheckedChange({
+                                        id: e.id,
+                                        stopper: e.price === null
+                                    }) 
+                                }}
+                            />
+                        </label>
+                        <CartProductCard product={e} fetchData={fetchData}/>
+                    </div>
                 ))
             }
         </div>
@@ -61,7 +134,7 @@ function Cart({
 function CartProductCard({ product, fetchData }: { product: CartItem, fetchData: () => void }) {
     const [changeQuantityFromCart, {
         isLoading: isLoadingChangeQuantity
-    }] = useChangeQuantityFromCart_memberMutation()
+    }] = useChangeItemFromCart_memberMutation()
     const [deleteProductFromCart, {
         isLoading: isLoadingDeleteProduct
     }] = useDeleteProductFromCart_memberMutation()
@@ -85,7 +158,7 @@ function CartProductCard({ product, fetchData }: { product: CartItem, fetchData:
     const handleQuantityChange = async(number: number) => {
         try {
             const result = await changeQuantityRequest(number)
-            toast.success(result?.message ?? 'changed successfully')
+            if (result?.status === 200) toast.success(result?.message ?? 'changed successfully')
             fetchData()
         } catch (err) {
             console.error(err)
@@ -190,9 +263,7 @@ function CartProductCard({ product, fetchData }: { product: CartItem, fetchData:
                         onClick={() => { handleDeleteProduct(product.id) }}
                     >
                         
-                            {/* <div > */}
-                                <CircleX /> REMOVE
-                            {/* </div> */}
+                        <CircleX /> REMOVE
                     </div>
                 </MyLoading>
             </div>
