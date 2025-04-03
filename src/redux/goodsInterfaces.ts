@@ -35,3 +35,22 @@ export type CartItem = Omit<Product, 'id'> & {
     color_code: string;
     checked: number
 }
+
+export interface OrderSnapshot {
+  productId: number;
+  name: string;
+  color: string;
+  size: string;
+  quantity: number;
+  price: number;
+  imgs: string[]
+}
+
+export interface Order {
+  id: number;
+  user_id: number;
+  total_price: string;
+  status: string;
+  created_at: string;
+  snapshot: OrderSnapshot[];
+}

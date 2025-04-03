@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { deepParseJson } from 'deep-parse-json';
 import { setUserInfo } from '../slices/authSlice';
 import { LoginResponse, UserRegister, UserDetails } from '../authInterfaces'
-import { Product, CartItem } from '../goodsInterfaces'
+import { Product, CartItem, Order } from '../goodsInterfaces'
 
 export const api = createApi({
   reducerPath: 'api',
@@ -165,6 +165,22 @@ export const api = createApi({
         body: credentials,
       }),
     }),
+    getOrders_member: builder.query<
+      { message: string, data: Order[], status: number, total: number },
+      { page?: number, pageSize?: number }
+    >({
+      query: ({ page, pageSize }) => `/order/member?${page && `page=${page}`}${page && `&pageSize=${pageSize}`}`,
+      transformResponse: (response: any) => {
+        try {
+          const parsedData = deepParseJson(response);
+          return parsedData;
+
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          return response;
+        }
+      },
+    }),
   }),
 });
 
@@ -179,5 +195,6 @@ export const {
   useLazySearchCart_MemberQuery,
   useChangeItemFromCart_memberMutation,
   useDeleteProductFromCart_memberMutation,
-  useSubmitOrder_memberMutation
+  useSubmitOrder_memberMutation,
+  useLazyGetOrders_memberQuery
 } = api;
