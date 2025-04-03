@@ -14,7 +14,7 @@ export default function OrderManagement() {
         pageSize: 10
     })
     const [totalAmount, setTotalAmount] = useState(0)
-    const [fetchOrder, { isFetching }] = useLazyGetOrders_memberQuery();
+    const [fetchOrder] = useLazyGetOrders_memberQuery();
     const [orderList, setOrderList] = useState<Order[]>([])
     const [detailIndex, setDetailIndex] = useState<null | number>(null)
     const orderDetail = useMemo(() => {
