@@ -91,7 +91,7 @@ const authSlice = createSlice({
           } else if (payload.status == 404) {
             toast.warning('Not Found (404): Resource not found!');
           } else if (payload.status == 500) {
-            toast.warning('Server error, please try again later.');
+            toast.warning(payload?.data?.message ?? 'Server error, please try again later.');
           } else if (payload.status == 'FETCH_ERROR') {
             toast.warning('[FETCH_ERROR] Server error, please try again later.');
           } 
